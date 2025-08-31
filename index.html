@@ -1,104 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Globurg | Delicious Burgers</title>
-    <link rel="icon" href="5787016.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="about.css">
-
-    <style>
-    
-
-    /* About Section */
-    .about-container {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .about-container h1 {
-      text-align: center;
-      color: #d32f2f;
-      margin-bottom: 20px;
-    }
-
-    .about-container p {
-      font-size: 18px;
-      margin-bottom: 15px;
-      text-align: justify;
-    }
-
-    .highlight {
-      font-weight: bold;
-      color: #d32f2f;
-    }
-  </style>
-   
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globurg | Delicious Burgers</title>
+  <link rel="icon" href="5787016.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- HERO SECTION -->
-    <section class="hero" id="Home">
-        <nav>
-            <a href="#Home">Home</a>
-            <a href="#Menu">Menu</a>
-            <a href="#About">About</a>
-            <a href="#Contact">Contact</a>
-        </nav>
-        <h1 class="heading">YOUR CRAVINGS,</h1>
-        <h1 class="heading">OUR CRAFT.</h1>
-        <h3 class="line">Don't just stare at the screen—make your hunger proud. Order now.</h3>
-        <div class="dropdown">
+
+  <!-- HERO SECTION -->
+  <header class="globurg-header">
+    <nav class="globurg-nav">
+      <a href="#Home">Home</a>
+      <a href="#Menu">Menu</a>
+      <a href="#About">About</a>
+      <a href="#Contact">Contact</a>
+    </nav>
+    <section class="globurg-hero" id="Home">
+      <div class="globurg-hero-text">
+        <h1>Your Cravings,</h1>
+        <h1>Our Craft.</h1>
+        <p>Don't just stare at the screen—make your hunger proud. Order now.</p>
+        <div class="globurg-order-btns">
+          <div class="dropdown">
             <button class="dropbtn">Order Now</button>
             <div class="dropdown-content">
-                <a href="link.zomato.com/xqzv/rshare?id=5421164530563a4b">Zomato</a>
-                <a href="https://www.swiggy.com/city/aurangabad/globurg-cannought-place-rest374072" target="_blank">Swiggy</a>
+              <a href="link.zomato.com/xqzv/rshare?id=5421164530563a4b" target="_blank">Zomato</a>
+              <a href="https://www.swiggy.com/city/aurangabad/globurg-cannought-place-rest374072" target="_blank">Swiggy</a>
             </div>
+          </div>
         </div>
+      </div>
     </section>
+  </header>
 
-    <!-- MENU SECTION -->
-    <section id="Menu">
-        <h1>Menu:</h1>
-        <div class="menu-images">
-            <img src="menu.png" class="sizing" alt="Menu Item 1">
-            <img src="menu2.png" class="sizing" alt="Menu Item 2">
+  <!-- MENU SECTION -->
+  <section class="globurg-menu" id="Menu">
+    <h2>Menu</h2>
+    <div class="globurg-menu-grid">
+      <img src="menu.png" alt="Menu Item 1">
+      <img src="menu2.png" alt="Menu Item 2">
+    </div>
+  </section>
+
+  <!-- ABOUT US SECTION -->
+  <section class="globurg-about" id="About">
+    <div class="about-container">
+
+      <!-- Hero for About -->
+      <div class="about-hero">
+        <div class="about-hero-text">
+          <h1>Globurg — Aurangabad’s Burger Stop for Big Flavours</h1>
+          <p>Freshly made veg &amp; non-veg burgers, crispy sides and friendly prices — rooted in Aurangabad, loved by locals.</p>
+          <div class="about-hero-buttons">
+            <a href="#visit" class="btn-primary">Visit Us</a>
+            <a href="#Menu" class="btn-outline">See Menu</a>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1200&q=60" alt="Globurg storefront">
+      </div>
+
+      <!-- Story + Values Grid -->
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Our Story</h2>
+          <p>We started with a simple idea: make great burgers that people genuinely love—fast, fresh, and fairly priced. From our Aurangabad roots to a growing community of regulars, Globurg has become a go-to spot for bold flavours and easy comfort food. We serve students, families and office-goers around CIDCO / Prozone Mall and beyond.</p>
+
+          <div class="card about-values">
+            <h3>What we serve</h3>
+            <p>A balanced menu of veg &amp; non-veg burgers, crispy sides, and classic beverages. Popular picks include the Veggie Burger, The American Dream Burger, Fries, Chicken Pops and Cold Coffee — plus seasonal specials and late-night favourites.</p>
+
+            <div class="values-grid">
+              <div class="value-item">
+                <div class="icon-box">🔥</div>
+                <div class="value-text">
+                  <div class="title">Freshly made</div>
+                  <div class="desc">Patties and sauces prepared daily.</div>
+                </div>
+              </div>
+              <div class="value-item">
+                <div class="icon-box">💰</div>
+                <div class="value-text">
+                  <div class="title">Great value</div>
+                  <div class="desc">Meals typically in the ₹200–₹400 range.</div>
+                </div>
+              </div>
+              <div class="value-item">
+                <div class="icon-box">🤝</div>
+                <div class="value-text">
+                  <div class="title">Friendly service</div>
+                  <div class="desc">Quick, welcoming staff — great for late evenings.</div>
+                </div>
+              </div>
+              <div class="value-item">
+                <div class="icon-box">✔</div>
+                <div class="value-text">
+                  <div class="title">Hygiene &amp; quality</div>
+                  <div class="desc">Consistent preparation standards every day.</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <!-- Aside Cards -->
+        <aside>
+          <div class="card">
+            <h3>Timeline</h3>
+            <ol>
+              <li><strong>Founded</strong> — Started in Aurangabad to serve honest, tasty burgers.</li>
+              <li><strong>Grew locally</strong> — Regulars from CIDCO, Prozone and the nearby colleges.</li>
+              <li><strong>Open late</strong> — Evening &amp; late-night service for shoppers and students.</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h3>Customer love</h3>
+            <blockquote>“Perfect late-night burgers and quick service — my go-to after college.”</blockquote>
+            <div class="small-text">— A happy customer from Aurangabad</div>
+          </div>
+
+          <div id="visit" class="card">
+            <h3>Where to find us</h3>
+            <p>E1/7, Town Center, Zone A, Ward No.1, CIDCO (Prozone Mall area), Aurangabad – 431009</p>
+            <a href="https://www.google.com/maps/place/Globurg+Burger/@19.8762693,75.3628808,17z" target="_blank">Open in Google Maps →</a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Map + CTA -->
+      <div class="about-map-grid">
+        <div class="card">
+          <h3>Find us on the map</h3>
+          <iframe src="https://www.google.com/maps?q=Globurg+Burger+Aurangabad&output=embed" loading="lazy"></iframe>
+        </div>
+        <div class="card plan-visit">
+          <h3>Plan your visit</h3>
+          <p>Open evenings — perfect for shoppers and late-night cravings. Order in or walk in — we’ll have your burger ready.</p>
+          <a href="#Menu" class="btn-primary">Order / View Menu</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="Contact">
+    <p>© <script>document.write(new Date().getFullYear())</script> Globurg — Aurangabad. Prices and hours may vary by outlet.</p>
         
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section id="About">
-        <h1>About Us</h1>
-        <p>At Globurg, we craft burgers that satisfy every craving. Fresh ingredients, bold flavors, and a dash of love—because you deserve the best bite every time!</p>
-        <!-- About Us Section -->
-  <div class="about-container">
-    <h1>About Us</h1>
-    <p>
-      Welcome to <span class="highlight">Globurg Burger</span>, the heart of delicious burgers in Aurangabad!  
-      We started with a simple mission: to bring people together through the love of good food.  
-    </p>
-    <p>
-      Every burger we serve is made with fresh ingredients, juicy patties, and a passion for flavor.  
-      Whether you’re craving a classic cheeseburger or trying something new, we’ve got something for everyone.  
-    </p>
-    <p>
-      At Globurg, it’s not just about food—it’s about creating moments. Our space is designed to be cozy and welcoming,  
-      where friends and families can enjoy quality time together.  
-    </p>
-    <p>
-      Thank you for making us a part of your story. We’re excited to keep serving you the <span class="highlight">best burgers in town!</span>
-    </p>
-  </div>
-    </section>
+</footer>
 
 </body>
 </html>
-
-
-
