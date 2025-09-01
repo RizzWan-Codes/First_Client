@@ -113,7 +113,8 @@ a{
 
 
 .big{
-  font-size: 20%;
+  font-size: 17px;
+  line-height: 30px;
 }
 
 .contact-card{
@@ -125,5 +126,101 @@ a{
 
 #Contact{
   height: 50vh;
+  background-color: #fafafa;
+}
+
+.about-contact-box {
+  background: #fff7e6;
+  color: #111;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  line-height: 1.8;
+}
+
+.about-contact-box h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+  color: #d97706;
+}
+
+.about-contact-box p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-contact-box .social-links a {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: #d97706;
+  font-weight: bold;
+  text-decoration: none;
+  border: 1px solid #d97706;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  transition: 0.3s;
+}
+
+.about-contact-box .social-links a:hover {
+  background: #d97706;
+  color: white;
+}
+
+#Contact {
+  background: #fff7e6;
+  color: #111;
+  padding: 3rem 1.5rem 5rem; /* More breathing space */
+  height: 113vh;
+}
+
+.contact-box {
+  max-width: 700px;
+  margin: 0 auto;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  line-height: 1.8; /* ✅ Adds good vertical spacing */
+  position: relative;
+  top: 85px;
+}
+
+.contact-box h2 {
+  font-size: 2rem;
+  color: #d97706;
+  margin-bottom: 1rem;
+}
+
+.contact-box p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem; /* ✅ Space between paragraphs */
+}
+
+.contact-details p {
+  margin-bottom: 0.8rem; /* ✅ Space between contact items */
+}
+
+.contact-social {
+  margin-top: 1.8rem; /* ✅ Space above the button */
+}
+
+.contact-social a {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #d97706;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+.contact-social a:hover {
+  background: #92400E;
 }
 
