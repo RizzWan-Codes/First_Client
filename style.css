@@ -12,7 +12,8 @@ body { font-family: Arial, sans-serif; background:#121212; color:white; scroll-b
   display:flex; gap:15px;
   background: rgba(0,0,0,0.7); padding:10px 15px; border-radius:8px; z-index:1000;
   text-decoration: none;
-  width: 300px;
+  width: 320px;
+  justify-content: center;
 }
 .globurg-nav a { color:white; font-weight:bold; transition:0.3s; }
 .globurg-nav a:hover { color:#ffae00; }
@@ -356,4 +357,3 @@ a{
   opacity: 1;
   transform: translateY(0); /* back to original position */
 }
-
