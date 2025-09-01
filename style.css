@@ -139,6 +139,7 @@ a{
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   line-height: 1.8;
+  
 }
 
 .about-contact-box h3 {
@@ -261,7 +262,7 @@ a{
 }
 
 .chatbot-window {
-  width: 320px;
+  width: 380px;
   height: 400px;
   background: white;
   border-radius: 12px;
@@ -337,8 +338,10 @@ a{
 /* ===== MOBILE SPECIFIC ===== */
 @media (max-width: 768px) {
   .faq-buttons {
-    position: relative;
-    bottom: 400px; /* moves the buttons up inside the chat window */
+    position: static;  /* remove weird positioning */
+    grid-template-columns: 1fr 1fr; /* stack buttons vertically for better fit */
+    gap: 10px;
+    margin-top: 10px;
   }
 }
 
