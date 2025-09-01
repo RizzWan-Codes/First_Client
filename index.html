@@ -174,5 +174,142 @@
     <h4 class="big">Phone Number : +91 8999931123</h4>
   </footer>
 
+  
+<!-- ================= CHATBOT WIDGET ================= -->
+<!-- ================= CHATBOT WIDGET ================= -->
+<div class="chatbot-container">
+  <div id="chatToggle" class="chatbot-toggle">
+    <img src="5787016.png" alt="Chat Icon">
+  </div>
+
+  <div id="chatWindow" class="chatbot-window">
+    <div class="chat-header">🍔 Globurg Bot</div>
+    <div id="chatBody" class="chat-body">
+      <div class="bot-message">Hi! 👋 Hungry? Click any question below to see the answer.</div>
+
+      <div class="faq-buttons"></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+const chatToggle = document.getElementById("chatToggle");
+const chatWindow = document.getElementById("chatWindow");
+const chatBody = document.getElementById("chatBody");
+const faqContainer = document.querySelector(".faq-buttons");
+
+// 50 sample questions & answers
+
+  const faqList = [
+  { q: "Veggie Burger?", a: "Our Veggie Burger has fresh veggies, sauces, and a soft bun." },
+  { q: "American Dream?", a: "The American Dream Burger has double patty, cheese, and secret sauce." },
+  { q: "Sides?", a: "We have Fries, Chicken Pops, and Cold Coffee available." },
+  { q: "Delivery?", a: "Yes! We do home delivery via Zomato and Swiggy." },
+  { q: "Opening Hours?", a: "Our opening hours are 11am–11pm daily." },
+  { q: "Offers?", a: "We offer occasional giveaways and seasonal discounts." },
+  { q: "Veg/Non-Veg?", a: "Yes, we have vegetarian and non-vegetarian options." },
+  { q: "Contact?", a: "You can reach us at +91 8999931123 or globurgburgers@gmail.com" },
+  { q: "Popular burger?", a: "The 'American Dream' is our most popular burger." },
+  { q: "Ingredients?", a: "We use fresh local vegetables and premium meat." },
+  { q: "Vegan options?", a: "Yes, we have vegan-friendly burger options." },
+  { q: "Kids menu?", a: "Yes, we have smaller portions for kids." },
+  { q: "Combo meals?", a: "Combos include burger, fries, and a drink." },
+  { q: "Spicy level?", a: "You can choose mild, medium, or spicy." },
+  { q: "Gluten-free?", a: "We offer gluten-free buns for some burgers." },
+  { q: "Special sauces?", a: "Our chef makes secret sauces daily." },
+  { q: "Late-night orders?", a: "We are open till 11pm for late-night cravings." },
+  { q: "Seating?", a: "Indoor and outdoor seating available." },
+  { q: "Home delivery fee?", a: "Delivery fees depend on the platform and location." },
+  { q: "Pre-order?", a: "Yes, you can pre-order via Zomato/Swiggy links." },
+  { q: "Birthday offers?", a: "We sometimes have birthday specials—check our socials." },
+  { q: "Payment methods?", a: "Cash, UPI, and all major cards accepted." },
+  { q: "Parking?", a: "Parking available at Prozone Mall parking lot." },
+  { q: "Online ordering?", a: "Order via Zomato or Swiggy online." },
+  { q: "Catering?", a: "We do catering for small events and parties." },
+  { q: "Combo drinks?", a: "Cold Coffee, Soft Drinks, and Lassi available." },
+  { q: "Loyalty program?", a: "Not yet, but coming soon!" },
+  { q: "New arrivals?", a: "Check our 'Seasonal Specials' menu online." },
+  { q: "Burger size?", a: "Standard and double patty sizes available." },
+  { q: "Cheese options?", a: "Cheddar, Mozzarella, and Vegan Cheese." },
+  { q: "Fries types?", a: "Classic, Wedges, and Cheese Fries." },
+  { q: "Delivery partners?", a: "Zomato & Swiggy only." },
+  { q: "Allergy info?", a: "Ingredients list available on request." },
+  { q: "Feedback?", a: "You can message us on Instagram or email." },
+  { q: "Gift cards?", a: "Not available yet, stay tuned." },
+  { q: "Signature burger?", a: "American Dream with double cheese & secret sauce." },
+  { q: "Fries portion?", a: "Medium size is standard." },
+  { q: "Cold coffee?", a: "Made with fresh milk and ice cream." },
+  { q: "Seasonal burger?", a: "Check 'Specials' tab online." },
+  { q: "Feedback phone?", a: "+91 8999931123" },
+  { q: "Contact email?", a: "globurgburgers@gmail.com" },
+  { q: "Instagram?", a: "https://www.instagram.com/globurgburgers/" },
+  { q: "TikTok?", a: "Currently not available." },
+  { q: "Burger buns?", a: "Freshly baked daily." },
+  { q: "Patty options?", a: "Veg, Chicken, and Beef options." },
+  { q: "Spicy sauces?", a: "Available on request." },
+  { q: "Cheese fries?", a: "Yes, popular choice." },
+  { q: "Meal for 2?", a: "Combo meals can be shared." },
+  { q: "Extra toppings?", a: "Lettuce, Tomato, Jalapenos available." },
+  { q: "Packaging?", a: "Eco-friendly packaging for all orders." }
+];
+
+
+
+// Show 8 random questions
+function loadRandomFaq() {
+  faqContainer.innerHTML = ""; // clear previous
+  const shuffled = faqList.sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, 8);
+
+  selected.forEach(item => {
+    const btn = document.createElement("button");
+    btn.innerText = item.q;
+    btn.dataset.answer = item.a;
+    btn.className = "faq-btn";
+    faqContainer.appendChild(btn);
+
+    // click acts as user message
+    btn.addEventListener("click", () => {
+      appendUserMessage(item.q);
+      setTimeout(() => appendBotMessage(item.a), 200);
+    });
+  });
+}
+
+// toggle chat
+chatToggle.addEventListener("click", () => {
+  chatWindow.style.display = chatWindow.style.display === "flex" ? "none" : "flex";
+  chatToggle.classList.add("rotate");
+  setTimeout(() => chatToggle.classList.remove("rotate"), 600);
+  if(chatWindow.style.display === "flex") loadRandomFaq();
+});
+
+// append messages
+function appendBotMessage(msg){
+  const div = document.createElement("div");
+  div.className="bot-message";
+  div.innerText=msg;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function appendUserMessage(msg){
+  const div = document.createElement("div");
+  div.className="user-message";
+  div.innerText=msg;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+</script>
+
+
+
+
+
+<script src="script.js"></script>
+
+
 </body>
 </html>
