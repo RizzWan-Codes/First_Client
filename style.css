@@ -104,7 +104,7 @@ footer{ padding:2rem; text-align:center; font-size:0.75rem; color:#666; backgrou
     color: white;
     font-weight: bold;
     transition: 0.3s;
-    text-decoration: none; /* this removes the underline */
+    text-decoration: none;
 }
 
 a{
@@ -172,7 +172,7 @@ a{
 #Contact {
   background: #fff7e6;
   color: #111;
-  padding: 3rem 1.5rem 5rem; /* More breathing space */
+  padding: 3rem 1.5rem 5rem;
   height: 113vh;
 }
 
@@ -184,7 +184,7 @@ a{
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
-  line-height: 1.8; /* ✅ Adds good vertical spacing */
+  line-height: 1.8;
   position: relative;
   top: 85px;
 }
@@ -197,15 +197,15 @@ a{
 
 .contact-box p {
   font-size: 1.1rem;
-  margin-bottom: 1rem; /* ✅ Space between paragraphs */
+  margin-bottom: 1rem;
 }
 
 .contact-details p {
-  margin-bottom: 0.8rem; /* ✅ Space between contact items */
+  margin-bottom: 0.8rem;
 }
 
 .contact-social {
-  margin-top: 1.8rem; /* ✅ Space above the button */
+  margin-top: 1.8rem;
 }
 
 .contact-social a {
@@ -222,5 +222,135 @@ a{
 
 .contact-social a:hover {
   background: #92400E;
+}
+
+/* ===== CHATBOT WIDGET ===== */
+.chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chatbot-toggle {
+  width: 60px;
+  height: 60px;
+  background: #d97706;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2001;
+  transition: transform 0.6s ease;
+  margin-bottom: 30px;
+}
+
+.chatbot-toggle.rotate {
+  transform: rotate(360deg);
+}
+
+.chatbot-toggle img {
+  width: 35px;
+  height: 35px;
+}
+
+.chatbot-window {
+  width: 320px;
+  height: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  z-index: 2000;
+}
+
+.chat-header {
+  background: #d97706;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bot-message {
+  padding: 10px;
+  border-radius: 10px;
+  background: #fef3c7;
+  align-self: flex-start;
+  line-height: 1.5;
+}
+
+.user-message {
+  padding: 10px;
+  border-radius: 10px;
+  background: #d97706;
+  color: white;
+  align-self: flex-end;
+  line-height: 1.5;
+}
+
+/* FAQ Buttons */
+.faq-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.faq-buttons button {
+  background: #d97706;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.faq-buttons button:hover {
+  background: #92400e;
+}
+
+/* ===== MOBILE SPECIFIC ===== */
+@media (max-width: 768px) {
+  .faq-buttons {
+    position: relative;
+    bottom: 400px; /* moves the buttons up inside the chat window */
+  }
+}
+
+/* Fade-in animation */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(20px); /* slightly move down */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-element.visible {
+  opacity: 1;
+  transform: translateY(0); /* back to original position */
 }
 
