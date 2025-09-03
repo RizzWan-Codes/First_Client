@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globurg Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .hero-buttons button {
+      padding: 12px 25px;
+      margin-right: 15px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #ff914d;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #e07c35;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #ff914d;
+      color: #ff914d;
+    }
+
+    .btn-outline:hover {
+      background: #ff914d;
+      color: white;
+    }
+
+    .hero img {
+      width: 380px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    /* CARDS */
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+      color: #222;
+    }
+
+    .card p {
+      color: #555;
+      font-size: 1rem;
+    }
+
+    /* SUB BLOG BUTTONS */
+    .sub-blog-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .sub-blog-buttons a {
+      text-decoration: none;
+      padding: 12px 20px;
+      background: #ff914d;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .sub-blog-buttons a:hover {
+      background: #e07c35;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero img {
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-buttons {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Globurg — Taste the Revolution</h1>
+        <p>Flame-grilled burgers, hand-cut fries, and flavors that hit differently. Your next obsession is here.</p>
+        <div class="hero-buttons">
+         
+        </div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1550317138-10000687a72b" alt="Burger">
+    </section>
+
+    <!-- MAIN BLOG INFO -->
+    <section class="card">
+      <h2>How It All Began</h2>
+      <p>Globurg started with one mission — to break the monotony of boring burgers. We wanted bold, fiery, and unforgettable bites. Our journey began in a small kitchen in Aurangabad, where passion met creativity. Every recipe was tested dozens of times before making it to the menu. We focused on sourcing fresh vegetables, soft artisan buns, and the best Indian spices to create burgers with a desi twist. Over time, our tiny idea turned into a local sensation, thanks to the love of foodies who craved something different. Today, Globurg is known for serving the ultimate comfort food without compromising on quality or taste. Every burger is cooked to perfection and served with care because you deserve nothing but the best!</p>
+    </section>
+
+    <section class="card">
+      <h2>The Menu That Started a Craze</h2>
+      <p>From juicy chicken delights to paneer tikka sensations, our menu is a playground for burger lovers. Our signature Crispy Chicken Burger is layered with creamy sauces and fresh lettuce for that perfect crunch. For our vegetarian fans, the Paneer Makhani Burger and Aloo Masala Burger are absolute showstoppers, packed with authentic Indian flavors. And it doesn’t stop there — our loaded fries, masala peri-peri fries, and cheesy nachos turn every meal into a feast. To top it off, we’ve got thick shakes in flavors like chocolate, mango, and cold coffee, giving you the ultimate combo experience. Every month, we launch a limited-edition burger that keeps our fans excited and always coming back for more. At Globurg, food is never just food — it’s an experience that satisfies your soul.</p>
+    </section>
+
+    <section class="card">
+      <h2>Our Promise</h2>
+      <p>We don’t just serve burgers; we serve happiness. Our promise is simple: freshness in every bite, fast service, and a vibe that makes you feel at home. We make our patties in-house, ensuring top-notch quality and hygiene. Our sauces are crafted from scratch to give that authentic Globurg flavor you can’t find anywhere else. Whether you’re visiting us after a long day, ordering for a family dinner, or hanging out with friends, we make sure your experience is worth remembering. And yes, no hidden ingredients, no shortcuts — just honest, delicious food that leaves you smiling every time. That’s a promise we’ll never break.</p>
+    </section>
+
+    <section class="card">
+      <h2>What People Say</h2>
+      <p>“If taste had a kingdom, Globurg would be the throne.”<br>
+      “Best burger joint in town. Period.”<br>
+      “Affordable, tasty, and quick service — exactly what we needed!”<br>
+      “Globurg’s paneer burger is life-changing. Seriously.”</p>
+    </section>
+
+    <section class="card">
+      <h2>Dive Into More</h2>
+      <p>Hungry for more Globurg stories? Check these out:</p>
+      <div class="sub-blog-buttons">
+        <a href="sub-blog1.html">The Secret Sauce</a>
+        <a href="sub-blog2.html">Burger Trends 2025</a>
+        <a href="sub-blog3.html">Veggies That Wow</a>
+        <a href="index.html">Back To Landing Page</a>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
