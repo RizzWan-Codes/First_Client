@@ -186,9 +186,11 @@ a{
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
-  line-height: 1.8;
+  line-height: 1.5;
   position: relative;
-  top: 85px;
+  top: -10px;
+  bottom: 50px;
+  height: 450px;
 }
 
 .contact-box h2 {
