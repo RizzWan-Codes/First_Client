@@ -6,10 +6,6 @@
   <title>Globurg | Delicious Burgers</title>
   <link rel="icon" href="5787016.png">
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <!-- HERO SECTION -->
   <header class="globurg-header">
     <nav class="globurg-nav">
       <img src="5787016.png" style="width: 16px; height: 16px;">
@@ -28,7 +24,7 @@
           <div class="dropdown">
             <button class="dropbtn" style="margin-top: 20px;">Order With Zomato</button>
             <button class="dropbtn" onclick="window.open('https://www.swiggy.com/city/aurangabad/globurg-cannought-place-rest374072','_blank')" style="background-color: orange; margin-top: 20px;">Order With Swiggy</button>
-            <button class="dropbtn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdFsxQw7_Iemq8Y5E4tee9TAplwNk82S_GIXgfX_mb8Ra3yow/viewform','_blank')" style="background-color: rgb(0, 255, 179); margin-top: 20px;">Diwali Give-Away</button> 
+            <button class="dropbtn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdFsxQw7_Iemq8Y5E4tee9TAplwNk82S_GIXgfX_mb8Ra3yow/viewform','_blank')" style="background-color: rgb(243, 255, 80); margin-top: 20px;">Diwali Give-Away</button> 
             <button class="dropbtn" onclick="window.open('https://www.swiggy.com/city/aurangabad/globurg-cannought-place-rest374072','_blank')" style="background-color: rgb(255, 132, 0); margin-top: 20px;">MagicPin(15% Off)</button>
           </div>
         </div>
@@ -182,6 +178,256 @@
 </section>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    /* === Collaborate Section Styles === */
+    .collab-section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 20px;
+      background: #1a1a1a;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .collab-section h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    .collab-section p {
+      font-size: 15px;
+      color: #ccc;
+    }
+    .collab-btn {
+      background: red;
+      color: white;
+      padding: 12px 22px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.3s;
+      margin: 15px 0;
+    }
+    .collab-btn:hover {
+      background: #cc0000;
+    }
+    .collab-panel {
+      margin-top: 20px;
+      padding: 20px;
+      background: #262626;
+      border-radius: 10px;
+      display: none;
+    }
+    .collab-panel.show {
+      display: block;
+    }
+    .rule-text {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #eee;
+    }
+    .rule-text strong {
+      color: #ff4444;
+    }
+    .generate-btn {
+      background: #ff5722;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .generate-btn:hover {
+      background: #e64a19;
+    }
+    .loading {
+      font-size: 15px;
+      color: #aaa;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    .script-box {
+      background: #111;
+      color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 15px;
+      line-height: 1.8; /* 👈 line height for better readability */
+      white-space: pre-line;
+      display: none;
+    }
+    .download-btn {
+      background: green;
+      color: white;
+      padding: 10px 18px;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+    .download-btn:hover {
+      background: darkgreen;
+    }
+  </style>
+</head>
+<body>
+
+  
+<!-- ✅ NEW COLLABORATE SECTION -->
+<section class="collab-section">
+  <h2>Collaborate with us — Script Library</h2>
+  <p>Click the red button to reveal the collaboration rule and generate/download a unique 1-minute Hinglish vlog script (Click the button to see rewards)😎</p>
+
+  <button id="openBtn" class="collab-btn">Collaborate with us</button>
+  
+  <div id="collabPanel" class="collab-panel">
+    <p class="rule-text">📢 <strong>Rule:</strong> Make a vlog reel about us and if it reaches more than <strong>10,000 views</strong>, you will get <strong>30% OFF</strong> on our products.</p>
+    
+    <button id="genBtn" class="generate-btn">🎬 Generate Script for Vlog</button>
+    <button id="dlBtn" class="download-btn">⬇ Download PDF</button>
+    
+    <p id="loadingText" class="loading" style="display: none;">Generating your perfect script... ⏳</p>
+    
+    <div id="scriptBox" class="script-box"></div>
+    <p style="font-size: 13px; color: #888; margin-top: 20px;">Each script is unique, full Hinglish, 25 lines. Click generate to see one and download its PDF.</p>
+  </div>
+</section>
+
+<script>
+const openBtn = document.getElementById('openBtn');
+const collabPanel = document.getElementById('collabPanel');
+const genBtn = document.getElementById('genBtn');
+const scriptBox = document.getElementById('scriptBox');
+const dlBtn = document.getElementById('dlBtn');
+const loadingText = document.getElementById('loadingText');
+
+openBtn.addEventListener('click', () => {
+  collabPanel.classList.toggle('show');
+});
+
+const scripts = [
+`Script 1:
+Guys, aaj mast cheez try karne wale hain.
+Aaj main outdoor stall pe special shake try karne wala hoon.
+Waiter ne bola best seller hai, main agree karta hoon.
+Dekho yeh golden fried burger — juicy burst ka combo.
+Price bhi theek hai; student budget friendly option bhi available.
+Opening ke liye ek close-up shot jaroor lena.
+First bite lete hi cheese ka explosion hota hai.
+Bhai, meri expectations sach me exceed kar gayi.
+Cheesy stretch ka feel ekdum different hai.
+Smell bhi tempting aur fresh lag rahi hai.
+Thoda tangy, thoda sweet — perfect balance.
+Portion generous hai, share karne layak bhi hai.
+Solo feast bhi easily ho sakta hai.
+Mera dost bola “best combo”, aur sach me sahi hai.
+Iske sath chilled drink bhi try karna banta hai.
+Slow-mo me first bite ka replay mast lagega.
+Background track thoda upbeat choose karna.
+Caption idea: “Globurg = Happiness ka shortcut.”
+Camera thoda upar se angle me le.
+Burger ka close-up ekdum cinematic feel dega.
+Rahul ne bhi bola taste ekdum fire hai.
+Mujhe personally fries ka crisp bahut pasand aaya.
+End me ek candid smile shot lena.
+Aur bolo “Guys, ye burger zaroor try karna!”
+Outro line: Stay hungry, stay foodie.`,
+
+`Script 2:
+Hello doston! 👋
+Main aaj laaya hoon ek dhamaka collab offer.
+Scene simple hai — vlog banao Globurg ke burgers pe.
+Thoda POV shots dikhana, thoda candid comedy add karna.
+Background me ek trending reel sound lagao.
+Sabse pehle burger ka intro shot lo.
+Phir ek dramatic unwrap sequence karo.
+Close-up me cheese pull highlight zaroor karna.
+Taste review casual aur natural lagna chahiye.
+Bolo “Arre, ye to dil jeet gaya bhai!”
+Lighting thoda warm rakho, insta aesthetic ke liye.
+Ek dialogue add karo: “Bhai, calories worth it hain.”
+Friend ko bhi involve karo reaction shot me.
+Unki expression natural comedy add karegi.
+Ek angle se fries ko slow-mo me dip karna.
+Aur dip ke baad bite leke thumbs up dena.
+Caption: “Foodie diaries with Globurg.”
+Ek short pan shot of the stall dikhana.
+Vlog ka vibe casual aur relatable hona chahiye.
+Last me bolo “Ab tumhari baari hai try karne ki.”
+Outro line thoda funny banado: “Burger khaya, dil jeeta.”
+Ek fake dramatic sigh bhi dalo after last bite.
+Dost ke saath hi-five shot dalo.
+Background music thoda fade-out karo end me.
+Aur bolo “See you in next foodie adventure!”`,
+
+`Script 3:
+Arre guys! 👋
+Globurg aur tumhari creativity milke ek blast karne wali hai.
+Ek reel banao jo mast, funny aur engaging ho.
+Burger ke close-up shots lena.
+Aur haan, cheese pull slow-mo me dikhana zaroor.
+Start me thoda quirky intro do.
+Ek line bolo: “Kya aap ready ho taste ke dhamake ke liye?”
+Phir burger ka first bite slow motion me lo.
+Ek candid reaction shot zaroor add karo.
+Background me thoda hip-hop ya trending audio dalo.
+Ek scene me fries ko dip karo dramatic style me.
+Phir ek bite leke exaggerated expression dikhana.
+Friend ko bolo “bhai, yeh to asli swag hai.”
+Ek funny overlay text lagao: “Globurg ka asli tadka.”
+Middle me ek cut karo — burger ke andar ka filling zoom shot.
+Phir bolo: “Dekha? Juicy layers = love ka formula.”
+Ek sequence banao jisme dost apna order choose karta hai.
+Friendly banter lines add karo natural lagne ke liye.
+Ek moment add karo jisme sab hans rahe ho casual vibes me.
+Ek voiceover line: “Har bite, ek celebration hai.”
+Thoda fast cut montage shots add karo stall ke.
+Phir ek funny outro banado: “Camera band karo warna burger khatam ho jayega!”
+Outro ke baad ek wink ya funny gesture karo.
+Aur finally bolo: “Globurg ke saath, har din tasty hai.”
+Last frame me food aur smile dono capture karo.
+Aur caption: “Taste + Dost = Perfect vlog.”`
+];
+
+
+let currentScript = '';
+
+genBtn.addEventListener('click', () => {
+  loadingText.style.display = 'block';
+  scriptBox.style.display = 'none';
+  dlBtn.style.display = 'none';
+  
+  const randomDelay = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
+  
+  setTimeout(() => {
+    const randomIndex = Math.floor(Math.random() * scripts.length);
+    currentScript = scripts[randomIndex];
+    scriptBox.textContent = currentScript;
+    scriptBox.style.display = 'block';
+    dlBtn.style.display = 'inline-block';
+    loadingText.style.display = 'none';
+  }, randomDelay);
+});
+
+dlBtn.addEventListener('click', () => {
+  if (!currentScript) return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const lines = doc.splitTextToSize(currentScript, 180);
+  doc.text(lines, 10, 10);
+  doc.save('globurg-collab-script.pdf');
+});
+</script>
+
+
   <!-- FOOTER -->
   <footer>
     <p class="big">© <script>document.write(new Date().getFullYear())</script> Globurg — Aurangabad. Prices and hours may vary by outlet.</p>
@@ -329,4 +575,3 @@ function appendUserMessage(msg){
 
 </body>
 </html>
-
