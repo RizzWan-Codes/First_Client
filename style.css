@@ -27,7 +27,7 @@ body { font-family: Arial, sans-serif; background:#121212; color:white; scroll-b
 }
 @media(max-width:768px){ .globurg-hero { background:url('burgeronly.jpg') center/cover no-repeat; } }
 
-.globurg-hero-text h1 { font-size:4rem; font-weight:bold; margin-bottom:10px; }
+.globurg-hero-text h1 { font-size:3.5rem; font-weight:bold; margin-bottom:10px; }
 .globurg-hero-text p { font-size:1.2rem; font-family: Georgia, serif; margin-bottom:20px; }
 
 /* DROPDOWN BUTTON */
