@@ -323,91 +323,166 @@ openBtn.addEventListener('click', () => {
   collabPanel.classList.toggle('show');
 });
 
-const scripts = [
-`Script 1:
-Guys, aaj mast cheez try karne wale hain.
-Aaj main outdoor stall pe special shake try karne wala hoon.
-Waiter ne bola best seller hai, main agree karta hoon.
-Dekho yeh golden fried burger — juicy burst ka combo.
-Price bhi theek hai; student budget friendly option bhi available.
-Opening ke liye ek close-up shot jaroor lena.
-First bite lete hi cheese ka explosion hota hai.
-Bhai, meri expectations sach me exceed kar gayi.
-Cheesy stretch ka feel ekdum different hai.
-Smell bhi tempting aur fresh lag rahi hai.
-Thoda tangy, thoda sweet — perfect balance.
-Portion generous hai, share karne layak bhi hai.
-Solo feast bhi easily ho sakta hai.
-Mera dost bola “best combo”, aur sach me sahi hai.
-Iske sath chilled drink bhi try karna banta hai.
-Slow-mo me first bite ka replay mast lagega.
-Background track thoda upbeat choose karna.
-Caption idea: “Globurg = Happiness ka shortcut.”
-Camera thoda upar se angle me le.
-Burger ka close-up ekdum cinematic feel dega.
-Rahul ne bhi bola taste ekdum fire hai.
-Mujhe personally fries ka crisp bahut pasand aaya.
-End me ek candid smile shot lena.
-Aur bolo “Guys, ye burger zaroor try karna!”
-Outro line: Stay hungry, stay foodie.`,
-
-`Script 2:
-Hello doston! 👋
-Main aaj laaya hoon ek dhamaka collab offer.
-Scene simple hai — vlog banao Globurg ke burgers pe.
-Thoda POV shots dikhana, thoda candid comedy add karna.
-Background me ek trending reel sound lagao.
-Sabse pehle burger ka intro shot lo.
-Phir ek dramatic unwrap sequence karo.
-Close-up me cheese pull highlight zaroor karna.
-Taste review casual aur natural lagna chahiye.
-Bolo “Arre, ye to dil jeet gaya bhai!”
-Lighting thoda warm rakho, insta aesthetic ke liye.
-Ek dialogue add karo: “Bhai, calories worth it hain.”
-Friend ko bhi involve karo reaction shot me.
-Unki expression natural comedy add karegi.
-Ek angle se fries ko slow-mo me dip karna.
-Aur dip ke baad bite leke thumbs up dena.
-Caption: “Foodie diaries with Globurg.”
-Ek short pan shot of the stall dikhana.
-Vlog ka vibe casual aur relatable hona chahiye.
-Last me bolo “Ab tumhari baari hai try karne ki.”
-Outro line thoda funny banado: “Burger khaya, dil jeeta.”
-Ek fake dramatic sigh bhi dalo after last bite.
-Dost ke saath hi-five shot dalo.
-Background music thoda fade-out karo end me.
-Aur bolo “See you in next foodie adventure!”`,
-
-`Script 3:
-Arre guys! 👋
-Globurg aur tumhari creativity milke ek blast karne wali hai.
-Ek reel banao jo mast, funny aur engaging ho.
-Burger ke close-up shots lena.
-Aur haan, cheese pull slow-mo me dikhana zaroor.
-Start me thoda quirky intro do.
-Ek line bolo: “Kya aap ready ho taste ke dhamake ke liye?”
-Phir burger ka first bite slow motion me lo.
-Ek candid reaction shot zaroor add karo.
-Background me thoda hip-hop ya trending audio dalo.
-Ek scene me fries ko dip karo dramatic style me.
-Phir ek bite leke exaggerated expression dikhana.
-Friend ko bolo “bhai, yeh to asli swag hai.”
-Ek funny overlay text lagao: “Globurg ka asli tadka.”
-Middle me ek cut karo — burger ke andar ka filling zoom shot.
-Phir bolo: “Dekha? Juicy layers = love ka formula.”
-Ek sequence banao jisme dost apna order choose karta hai.
-Friendly banter lines add karo natural lagne ke liye.
-Ek moment add karo jisme sab hans rahe ho casual vibes me.
-Ek voiceover line: “Har bite, ek celebration hai.”
-Thoda fast cut montage shots add karo stall ke.
-Phir ek funny outro banado: “Camera band karo warna burger khatam ho jayega!”
-Outro ke baad ek wink ya funny gesture karo.
-Aur finally bolo: “Globurg ke saath, har din tasty hai.”
-Last frame me food aur smile dono capture karo.
-Aur caption: “Taste + Dost = Perfect vlog.”`
+// ====== SCRIPT ARRAYS ======
+const intro = [
+"Hey guys! 👋",
+"Main aaj leke aaya hoon ek amazing burger experience.",
+"Globurg ke saath tumhare taste buds ka ultimate trip.",
+"Freshly made patties, crispy buns, aur ooey-gooey cheese.",
+"Aaj hum try karenge special combos aur drinks.",
+"Camera ready? Let's capture the deliciousness!",
+"Chalo, first shot ke liye thoda cinematic angle lete hain.",
+"Lighting set karlo — insta aesthetic vibes important hain.",
+"Vlog start karte hain excitement ke saath!",
+"Background music thoda upbeat choose karo.",
+"Sabse pehle stall ka overview shot lo.",
+"Intro me thoda quirky dialogue add karo.",
+"Caption ke liye catchy line socho.",
+"Camera close-up pe focus karo — burger hero banega.",
+"First bite ka slow-mo must!",
+"Thoda candid vibe maintain karna.",
+"Logo aur branding visible rakhna frame me.",
+"Smile aur energy maintain karo throughout.",
+"Intro thoda short aur engaging hona chahiye.",
+"Foodie audience ko immediately attract karo.",
+"Quick shots of menu highlights le lo.",
+"Friendly staff ka cameo zaroori hai.",
+"Camera thoda top angle se bhi shoot kare.",
+"Intro dialogue simple aur relatable rakho.",
+"Energy aur excitement dono convey karo."
 ];
 
+const hook = [
+"Guys, ye burger scene next level hai! 🔥",
+"POV shot ready? Let's dive into the yumminess.",
+"Ever seen cheese stretch like this? Stay tuned!",
+"Taste ka blast guaranteed, wait and watch.",
+"First bite se hi flavor ka surprise milega.",
+"Close-up shots dekhke bas crave karna shuru.",
+"Quick pan shots se menu ka overview dikhado.",
+"Hook me thoda humor aur casual vibe rakho.",
+"Camera move smoothly — cinematic feel essential.",
+"Catchy dialogue for audience engagement.",
+"Thoda teasing line add karo — “You won't believe this!”",
+"Hook should make viewers curious immediately.",
+"Slow motion fries dip karna ek must moment.",
+"Tease the giveaway or special offers.",
+"Use captions for extra fun effect.",
+"Hook must be energetic aur catchy.",
+"Add quirky background music snippet.",
+"Highlight stall ke unique features.",
+"Audience feel kare ki taste explosion aane wala hai.",
+"Make them smile with funny expression.",
+"Short and crisp sentences work best.",
+"Use reaction of friend in hook shot.",
+"Hook line should start with attention grabber.",
+"Keep it vibrant and lively.",
+"Visual cues match dialogue for full effect."
+];
 
+const scene = [
+"Take first bite of Veggie Burger slowly.",
+"Close-up of cheese pull in slow motion.",
+"Highlight sauce dripping for extra yum factor.",
+"Camera pans over golden fries on the side.",
+"Take sip of cold coffee for combo effect.",
+"Friend reacts exaggeratedly to spicy sauce.",
+"Pan over stall ambience quickly.",
+"Capture logo and brand signage clearly.",
+"Do a funny voiceover while eating.",
+"Show portion size to highlight value.",
+"Transition to Chicken Pop shot next.",
+"Quick montage of menu items being unwrapped.",
+"Add playful text overlay on screen.",
+"Take top-down shot of meal on table.",
+"Include candid laughter moment with friends.",
+"Slow-mo bite with thumbs up.",
+"Show friendly staff handing over order.",
+"Highlight crispy texture by close bite shot.",
+"Include quick angle change to keep energy.",
+"End scene part with satisfied smile.",
+"Zoom in on sauce being dipped in fries.",
+"Camera pan across multiple burgers together.",
+"Include reaction lines casually in between.",
+"Quick side glance shots for fun effect.",
+"Capture steam rising from hot burgers."
+];
+
+const reaction = [
+"Wow! Ye taste to mind-blowing hai!",
+"Bhai, cheese stretch ekdum perfect hai.",
+"Friend bola, 'Yeh combo hit hai!'",
+"Reaction lines natural aur casual rakho.",
+"Highlight excitement after first bite.",
+"Use facial expressions creatively.",
+"Camera capture kare reactions clearly.",
+"Thoda funny gesture add karo for vibe.",
+"Include dialogue: 'Bhai, seriously yum!'",
+"Thumbs up shot zaroori hai.",
+"Quick laughter or smile moment add karo.",
+"Comment on sides like fries aur cold coffee.",
+"Highlight satisfaction level naturally.",
+"Friend ke excited expressions capture karo.",
+"Include exaggerated flavor reaction.",
+"Add small dialogue for humor.",
+"Use short sentences to convey surprise.",
+"React naturally to spicy levels.",
+"Quick nods or hand gestures included.",
+"Show delight after trying seasonal special.",
+"Reaction should feel real aur engaging.",
+"Add mini funny commentary.",
+"Use surprised expressions for cheese pull.",
+"Close-up reaction for authentic vibe.",
+"End reactions with big smile."
+];
+
+const outro = [
+"That's it for today, guys! 🍔",
+"Hope you enjoyed the Globurg journey.",
+"Don't forget to like, share and follow.",
+"Outro dialogue casual and fun rakho.",
+"Show final shot of table with food.",
+"End with logo and catchy tagline.",
+"Friendly sign-off: 'Stay hungry, stay foodie!'",
+"Include small call-to-action for ordering.",
+"Wave to camera or give thumbs up.",
+"Quick flash of giveaway offer details.",
+"Outro music snippet to close scene.",
+"Add captions for final message.",
+"Smile naturally to end vlog.",
+"Highlight any ongoing discount briefly.",
+"Thank viewers for watching.",
+"Include social media handle overlay.",
+"End with text: 'See you in next foodie adventure!'",
+"Add a small blooper clip if possible.",
+"Show friends enjoying last bites.",
+"Quick pan over full spread once again.",
+"Keep energy high till final frame.",
+"Include fun outro caption.",
+"End with funny or quirky remark.",
+"Add final signature gesture.",
+"Fade out with brand logo."
+];
+
+// ====== GENERATE SCRIPT FUNCTION ======
+function generateScript(){
+  const scriptLines = [];
+
+  function pickRandomLines(arr, count){
+    const shuffled = arr.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+
+  scriptLines.push(...pickRandomLines(intro, 2));
+  scriptLines.push(...pickRandomLines(hook, 2));
+  scriptLines.push(...pickRandomLines(scene, 16));
+  scriptLines.push(...pickRandomLines(reaction, 3));
+  scriptLines.push(...pickRandomLines(outro, 2));
+
+  return scriptLines.join("\n");
+}
+
+// ====== BUTTON EVENTS ======
 let currentScript = '';
 
 genBtn.addEventListener('click', () => {
@@ -418,8 +493,7 @@ genBtn.addEventListener('click', () => {
   const randomDelay = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
   
   setTimeout(() => {
-    const randomIndex = Math.floor(Math.random() * scripts.length);
-    currentScript = scripts[randomIndex];
+    currentScript = generateScript();
     scriptBox.textContent = currentScript;
     scriptBox.style.display = 'block';
     dlBtn.style.display = 'inline-block';
@@ -436,6 +510,7 @@ dlBtn.addEventListener('click', () => {
   doc.save('globurg-collab-script.pdf');
 });
 </script>
+
 
 
   <!-- FOOTER -->
