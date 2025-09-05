@@ -542,14 +542,6 @@ const chatToggleBtn = document.getElementById("chatToggle");
 const chatWindow = document.getElementById("chatWindow");
 const chatBody = document.getElementById("chatBody");
 
-// ====== Toggle chat ======
-function toggleChat() {
-  const isOpen = chatWindow.style.display === "flex";
-  chatWindow.style.display = isOpen ? "none" : "flex";
-}
-
-burgerImg.addEventListener("click", toggleChat);
-chatToggleBtn.addEventListener("click", toggleChat);
 
 // ====== Create input box and send button dynamically ======
 const chatInputContainer = document.createElement("div");
@@ -635,9 +627,8 @@ chatInput.addEventListener("keydown", (e) => {
 
 
 <script src="script.js"></script>
-  <script src="chatbot.js"></script>
+<script src="chatbot.js"></script>
 
 
 </body>
 </html>
-
