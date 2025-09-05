@@ -23,7 +23,7 @@ async function sendMessage() {
 
   try {
     // 🔥 Replace with your actual Render backend URL
-    const response = await fetch("https://Globurg-AI-Backend.onrender.com/chat", {
+    const response = await fetch("https://globurg-ai-backend.onrender.com/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message }),
