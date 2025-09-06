@@ -1,39 +1,32 @@
+// ====== Elements ======
 const chatToggle = document.getElementById("chatToggle");
 const chatWindow = document.getElementById("chatWindow");
 const chatBody = document.getElementById("chatBody");
 const chatInput = document.getElementById("chatInput");
 const sendBtn = document.getElementById("sendBtn");
 
-// Toggle chat window & rotate button
+// ====== Predefined Q&A ======
+const predefinedQA = {
+  "opening hours": "We are open from 10 AM to 10 PM every day.",
+  "vegetarian options": "Yes! We have a variety of delicious vegetarian burgers.",
+  "location": "We are at 123 Burger Street, Food City.",
+  "deliver": "Absolutely! You can order through our app or website.",
+  "payment methods": "We accept cash, cards, and all popular online wallets.",
+  "gluten-free": "Yes, we have select gluten-free buns available.",
+  "delivery time": "Usually 30–45 minutes depending on your location.",
+  "customize burger": "Yes! You can add or remove toppings as you like.",
+  "combo offers": "Yes! Check our menu for the latest combo offers."
+};
+
+// ====== Toggle chat window ======
 chatToggle.addEventListener("click", () => {
   chatWindow.style.display = chatWindow.style.display === "flex" ? "none" : "flex";
   chatToggle.classList.add("rotate");
   setTimeout(() => chatToggle.classList.remove("rotate"), 600);
 });
 
-// FAQ buttons → send directly to bot
-const faqButtons = document.querySelectorAll(".faq-buttons button");
-faqButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const question = btn.innerText;
-    appendUserMessage(question);
-    sendMessage(question);
-  });
-});
-
-// Send input message
-sendBtn.addEventListener("click", () => {
-  const userMsg = chatInput.value.trim();
-  if (!userMsg) return;
-
-  appendUserMessage(userMsg);
-  chatInput.value = "";
-
-  sendMessage(userMsg);
-});
-
-// Append messages functions
-function appendBotMessage(msg) {
+// ====== Append message helpers ======
+function appendBotMessage(msg){
   const div = document.createElement("div");
   div.className = "bot-message";
   div.innerText = msg;
@@ -41,7 +34,7 @@ function appendBotMessage(msg) {
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
-function appendUserMessage(msg) {
+function appendUserMessage(msg){
   const div = document.createElement("div");
   div.className = "user-message";
   div.innerText = msg;
@@ -49,39 +42,55 @@ function appendUserMessage(msg) {
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
-// 🔥 Talk to backend instead of fake reply
-async function sendMessage(message) {
+// ====== Send message ======
+async function sendMessage(message){
+  const formattedMsg = message.toLowerCase().replace(/[?.!]/g, "").trim();
+
+  // Check predefined QA first
+  for(const key in predefinedQA){
+    if(formattedMsg.includes(key)){
+      appendBotMessage(predefinedQA[key]);
+      return;
+    }
+  }
+
+  // Otherwise, call AI backend
+  appendBotMessage("Typing... ⏳");
   try {
-    const response = await fetch("https://globurg-ai-backend.onrender.com/chat", {
+    const res = await fetch("https://globurg-ai-backend.onrender.com/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({ message })
     });
-
-    const data = await response.json();
-    appendBotMessage(data.reply || "⚠️ No reply from server");
-  } catch (error) {
-    appendBotMessage("❌ Oops! Something went wrong with the server.");
-    console.error(error);
+    const data = await res.json();
+    // Replace "Typing..." with AI reply
+    chatBody.lastChild.innerText = data.reply || "⚠️ No reply from server";
+  } catch(err){
+    chatBody.lastChild.innerText = "❌ Oops! Something went wrong with the server.";
+    console.error(err);
   }
 }
 
-// Scroll animations (unrelated but keeping it)
-const faders = document.querySelectorAll('.fade-in-element');
-const appearOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px"
-};
+// ====== Send button click ======
+sendBtn.addEventListener("click", () => {
+  const userMsg = chatInput.value.trim();
+  if(!userMsg) return;
+  appendUserMessage(userMsg);
+  chatInput.value = "";
+  sendMessage(userMsg);
+});
 
-const appearOnScroll = new IntersectionObserver(function(entries, observer){
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
+// ====== Enter key sends message ======
+chatInput.addEventListener("keydown", e => {
+  if(e.key === "Enter") sendBtn.click();
+});
+
+// ====== FAQ buttons click ======
+const faqButtons = document.querySelectorAll(".faq button");
+faqButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const question = btn.innerText.replace(/[?.!]/g, "").trim();
+    appendUserMessage(question);
+    sendMessage(question);
   });
-}, appearOptions);
-
-faders.forEach(fader => {
-  appearOnScroll.observe(fader);
 });
