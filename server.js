@@ -27,7 +27,18 @@ app.post("/chat", async (req, res) => {
     // Call OpenAI API
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo", // or "gpt-4o" if available
-      messages: [{ role: "user", content: userMessage }],
+      messages: [
+        {
+          role: "system",
+          content: "You are Globurg AI Bot. Always reply concisely using one sentence only.",
+        },
+        {
+          role: "user",
+          content: userMessage,
+        },
+      ],
+      max_tokens: 20,
+      temperature: 0.3,
     });
 
     const botMessage = completion.choices[0].message.content;
@@ -39,7 +50,6 @@ app.post("/chat", async (req, res) => {
   } catch (error) {
     console.error("❌ OpenAI API Error:", error);
 
-    // Optional: provide more error details to the client (not for production)
     const message = error.response?.data?.error?.message || error.message || "Unknown error";
 
     res.status(500).json({ reply: `Error with AI API: ${message}` });
