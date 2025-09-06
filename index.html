@@ -598,7 +598,7 @@ async function sendMessage() {
   chatInput.value = "";
 
   try {
-    const res = await fetch("http://localhost:5000/chat", { // your server.js endpoint
+    const res = await fetch("https://globurg-ai-backend.onrender.com/chat", { // your server.js endpoint
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message })
