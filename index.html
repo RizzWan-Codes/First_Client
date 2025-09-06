@@ -529,102 +529,28 @@ dlBtn.addEventListener('click', () => {
     <div id="chatBody" class="chat-body">
       <div class="bot-message">Hi! 👋 Hungry? Click any question below to see the answer.</div>
 
-      <div class="faq-buttons"></div>
+      <div class="faq">
+        <button >Hours?</button>
+    <button>Veg options?</button>
+    <button>Location?</button>
+    <button>Do you deliver?</button>
+    <button>Payments?</button>
+    <button >Gluten-free?</button>
+    <button >Delivery Time?</button>
+    <button>Customize Burger?</button>
+    <button>Combo Deals?</button>
+    </div>
+    <div class="chat-input-container">
+      <input type="text" id="chatInput" placeholder="Type your question..." />
+      <button id="sendBtn">Send</button>
+    </div>
     </div>
   </div>
 </div>
 
 
-<script>
+
 // ====== Elements ======
-const burgerImg = document.querySelector("img[src='5787016.png']");
-const chatToggleBtn = document.getElementById("chatToggle");
-const chatWindow = document.getElementById("chatWindow");
-const chatBody = document.getElementById("chatBody");
-
-
-// ====== Create input box and send button dynamically ======
-const chatInputContainer = document.createElement("div");
-chatInputContainer.className = "chat-input-container";
-chatInputContainer.style.display = "flex";
-chatInputContainer.style.marginTop = "10px";
-
-const chatInput = document.createElement("input");
-chatInput.type = "text";
-chatInput.placeholder = "Type your question...";
-chatInput.style.flex = "1";
-chatInput.style.padding = "8px";
-chatInput.style.borderRadius = "5px";
-chatInput.style.border = "1px solid #ccc";
-
-const sendBtn = document.createElement("button");
-sendBtn.innerText = "Send";
-sendBtn.style.marginLeft = "5px";
-sendBtn.style.padding = "8px 12px";
-sendBtn.style.border = "none";
-sendBtn.style.background = "#ff5722";
-sendBtn.style.color = "#fff";
-sendBtn.style.borderRadius = "5px";
-sendBtn.style.cursor = "pointer";
-
-chatInputContainer.appendChild(chatInput);
-chatInputContainer.appendChild(sendBtn);
-chatWindow.appendChild(chatInputContainer);
-
-// ====== Append messages ======
-function appendBotMessage(msg){
-  const div = document.createElement("div");
-  div.className = "bot-message";
-  div.innerText = msg;
-  chatBody.appendChild(div);
-  chatBody.scrollTop = chatBody.scrollHeight;
-}
-
-function appendUserMessage(msg){
-  const div = document.createElement("div");
-  div.className = "user-message";
-  div.innerText = msg;
-  chatBody.appendChild(div);
-  chatBody.scrollTop = chatBody.scrollHeight;
-}
-
-// ====== Send message ======
-async function sendMessage() {
-  const message = chatInput.value.trim();
-  if(!message) return;
-
-  appendUserMessage(message);
-  appendBotMessage("Typing... ⏳");
-  chatInput.value = "";
-
-  try {
-    const res = await fetch("https://globurg-ai-backend.onrender.com/chat", { // your server.js endpoint
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message })
-    });
-    const data = await res.json();
-    chatBody.lastChild.innerText = data.reply; // replace "Typing..." with GPT reply
-  } catch(err) {
-    chatBody.lastChild.innerText = "Oops! Something went wrong.";
-    console.error(err);
-  }
-}
-
-// ====== Send on click ======
-sendBtn.addEventListener("click", sendMessage);
-
-// ====== Send on Enter key ======
-chatInput.addEventListener("keydown", (e) => {
-  if(e.key === "Enter") sendMessage();
-});
-
-
-</script>
-
-
-
-
 
 <script src="script.js"></script>
 <script src="chatbot.js"></script>
