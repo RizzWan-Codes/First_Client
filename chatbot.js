@@ -1,28 +1,82 @@
-const chatIcon = document.getElementById("chatToggle");
-const chatWidget = document.getElementById("chatWindow");
+// ===== Elements =====
+const chatToggle = document.getElementById("chatToggle");
+const chatWindow = document.getElementById("chatWindow");
+const chatBody = document.getElementById("chatBody");
+const chatInput = document.getElementById("chatInput");
+const sendBtn = document.getElementById("sendBtn");
 
-chatIcon.addEventListener("click", () => {
-  chatWidget.style.display = chatWidget.style.display === "flex" ? "none" : "flex";
+// ===== Predefined Q&A =====
+const predefinedQA = {
+  "What are your opening hours?": "We are open from 10 AM to 10 PM every day.",
+  "Do you have vegetarian options?": "Yes! We have a variety of delicious vegetarian burgers.",
+  "Where are you located?": "We are at 123 Burger Street, Food City.",
+  "Do you deliver?": "Absolutely! You can order through our app or website.",
+  "What payment methods do you accept?": "We accept cash, cards, and all popular online wallets.",
+  "Do you have gluten-free options?": "Yes, we have select gluten-free buns available.",
+  "How long does delivery take?": "Usually 30–45 minutes depending on your location.",
+  "Can I customize my burger?": "Yes! You can add or remove toppings as you like.",
+  "Do you have combo offers?": "Yes! Check our menu for the latest combo offers."
+};
+
+// ===== Toggle chat window & rotate button =====
+chatToggle.addEventListener("click", () => {
+  chatWindow.style.display = chatWindow.style.display === "flex" ? "none" : "flex";
+  chatToggle.classList.add("rotate");
+  setTimeout(() => chatToggle.classList.remove("rotate"), 600);
 });
 
-document.getElementById("sendBtn").addEventListener("click", sendMessage);
-document.getElementById("chatInput").addEventListener("keypress", (e) => {
-  if (e.key === "Enter") sendMessage();
+// ===== FAQ buttons → send directly to bot =====
+const faqButtons = document.querySelectorAll(".faq button");
+faqButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const question = btn.innerText;
+    appendUserMessage(question);
+    sendMessage(question);
+  });
 });
 
-async function sendMessage() {
-  const userInput = document.getElementById("chatInput");
-  const chatBox = document.getElementById("chatBody");
-  const message = userInput.value.trim();
+// ===== Send input message =====
+sendBtn.addEventListener("click", () => {
+  const userMsg = chatInput.value.trim();
+  if (!userMsg) return;
 
-  if (!message) return;
+  appendUserMessage(userMsg);
+  chatInput.value = "";
+  sendMessage(userMsg);
+});
 
-  chatBox.innerHTML += `<div class="user-message">${message}</div>`;
-  userInput.value = "";
-  chatBox.scrollTop = chatBox.scrollHeight;
+// ===== Send on Enter key =====
+chatInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") sendBtn.click();
+});
 
+// ===== Append messages functions =====
+function appendBotMessage(msg) {
+  const div = document.createElement("div");
+  div.className = "bot-message";
+  div.innerText = msg;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function appendUserMessage(msg) {
+  const div = document.createElement("div");
+  div.className = "user-message";
+  div.innerText = msg;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// ===== Talk to backend or predefined Q&A =====
+async function sendMessage(message) {
+  // Check predefined questions first
+  if (predefinedQA[message]) {
+    appendBotMessage(predefinedQA[message]);
+    return;
+  }
+
+  // Otherwise, call your AI backend
   try {
-    // 🔥 Replace with your actual Render backend URL
     const response = await fetch("https://globurg-ai-backend.onrender.com/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -30,9 +84,9 @@ async function sendMessage() {
     });
 
     const data = await response.json();
-    chatBox.innerHTML += `<div class="bot-message">${data.reply}</div>`;
-    chatBox.scrollTop = chatBox.scrollHeight;
+    appendBotMessage(data.reply || "⚠️ No reply from server");
   } catch (error) {
-    chatBox.innerHTML += `<div class="bot-message error">Oops! Something went wrong!</div>`;
+    appendBotMessage("❌ Oops! Something went wrong with the server.");
+    console.error(error);
   }
 }
