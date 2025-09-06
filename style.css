@@ -253,7 +253,7 @@ a{
   position: relative;
   z-index: 2001;
   transition: transform 0.6s ease;
-  margin-bottom: 5px;
+  margin-bottom: 30px;
 }
 
 .chatbot-toggle.rotate {
@@ -278,6 +278,7 @@ a{
   bottom: 70px;
   right: 0;
   z-index: 2000;
+  margin-bottom: 25px;
 }
 
 .chat-header {
