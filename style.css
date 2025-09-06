@@ -267,18 +267,20 @@ a{
 
 .chatbot-window {
   width: 320px;
-  height: 400px;
+  max-height: 400px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   display: none;
   flex-direction: column;
   overflow: hidden;
-  position: absolute;
+  position: relative;
   bottom: 70px;
   right: 0;
   z-index: 2000;
   margin-bottom: 25px;
+  overflow-y: auto;
+  padding-bottom: 60px;
 }
 
 .chat-header {
@@ -318,31 +320,35 @@ a{
 }
 
 /* FAQ Buttons */
-.faq-buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.faq {
+  
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
+  justify-content: center;
+  margin: 10px 10px 0;
 }
 
-.faq-buttons button {
-  background: #d97706;
+.faq button {
+  background-color: #d97706;
   color: white;
   border: none;
-  padding: 8px 10px;
-  border-radius: 6px;
-  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 10px;
   font-size: 13px;
-  transition: 0.2s;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.faq-buttons button:hover {
-  background: #92400e;
+.faq button:hover {
+  background-color: #92400e;
 }
+
+
 
 /* ===== MOBILE SPECIFIC ===== */
 @media (max-width: 768px) {
-  .faq-buttons {
+  .faq {
     position: static;  /* remove weird positioning */
     grid-template-columns: 1fr 1fr; /* stack buttons vertically for better fit */
     gap: 10px;
@@ -417,4 +423,40 @@ a{
   .review-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.chat-input-container {
+  display: flex;
+  position: absolute;       /* stick to bottom */
+  bottom: 0;                /* exact bottom */
+  left: 0;
+  width: 100%;
+  padding: 8px;
+  background-color: #ff562200; /* bright orange background */
+  box-sizing: border-box;
+}
+
+#chatInput {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  font-size: 14px;
+  
+}
+
+#sendBtn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: #ff9100;  /* slightly lighter orange for contrast */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#sendBtn:hover {
+  background-color: #e57c00;
 }
