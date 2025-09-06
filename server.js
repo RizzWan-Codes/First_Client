@@ -26,22 +26,23 @@ app.post("/chat", async (req, res) => {
 
     // Call OpenAI API
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // or "gpt-4o"
+      model: "gpt-3.5-turbo", // or "gpt-4o" if available
       messages: [
         {
           role: "system",
-          content: "You are Globurg AI Bot. Only answer questions related to burgers. Website Name is 'Globurg'. Always reply in 5 to 8 words maximum. Never exceed 8 words. Keep it short, clear, and burger-style. Create very short answers.",
+          content: "You are Globurg AI Bot. Reply in one short sentence only, maximum 8 words. Never exceed this limit.",
         },
         {
           role: "user",
           content: userMessage,
         },
       ],
-      max_tokens: 25, // gives space but still short
+      max_tokens: 10, // 🔒 hard limit: about 7–8 words max
       temperature: 0.3,
-      stop: ["\n"], // stop after first line
+      stop: ["\n"], // stops after first line
     });
 
+    // Get bot reply
     const botMessage = completion.choices[0].message.content.trim();
 
     // Log AI response
