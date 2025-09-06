@@ -19,7 +19,7 @@ const openai = new OpenAI({
 
 app.post("/chat", async (req, res) => {
   try {
-    const userMessage = req.body.message;
+    const userMessage = (req.body.message || "").trim();
 
     // Log the incoming message
     console.log("🟡 User said:", userMessage);
@@ -30,18 +30,19 @@ app.post("/chat", async (req, res) => {
       messages: [
         {
           role: "system",
-          content: "You are Globurg AI Bot. Always reply concisely using one sentence only.",
+          content: "You are Globurg AI Bot. Reply with at most 10 words. Do NOT exceed 10 words, ever. Keep answers super short. I'll punish you if you exceed 10 words.",
         },
         {
           role: "user",
           content: userMessage,
         },
       ],
-      max_tokens: 20,
+      max_tokens: 15, // fits ~10 words max
       temperature: 0.3,
+      stop: ["\n", ".", "!", "?"], // cut off after first sentence end
     });
 
-    const botMessage = completion.choices[0].message.content;
+    const botMessage = completion.choices[0].message.content.trim();
 
     // Log AI response
     console.log("🟢 Bot replied:", botMessage);
