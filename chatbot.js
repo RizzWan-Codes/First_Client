@@ -7,13 +7,13 @@ const sendBtn = document.getElementById("sendBtn");
 
 // ===== Predefined Q&A =====
 const predefinedQA = {
-  "What are your opening hours?": "We are open from 10 AM to 10 PM every day.",
+  "What are your opening hours?": "We are open from 11 AM to 11 PM every day.",
   "Do you have vegetarian options?": "Yes! We have a variety of delicious vegetarian burgers.",
-  "Where are you located?": "We are at 123 Burger Street, Food City.",
-  "Do you deliver?": "Absolutely! You can order through our app or website.",
-  "What payment methods do you accept?": "We accept cash, cards, and all popular online wallets.",
+  "Where are you located?": "We are at E1/7, Town Center, Zone A, Ward No.1, CIDCO (Prozone Mall area), Aurangabad – 431009.",
+  "Do you deliver?": "Absolutely! You can order through Zomato, Swiggy or Magicpin(New).",
+  "What payment methods do you accept?": "We accept cash, cards, and UPI",
   "Do you have gluten-free options?": "Yes, we have select gluten-free buns available.",
-  "How long does delivery take?": "Usually 30–45 minutes depending on your location.",
+  "How long does delivery take?": "Depends on the platform from which you ordered and your location",
   "Can I customize my burger?": "Yes! You can add or remove toppings as you like.",
   "Do you have combo offers?": "Yes! Check our menu for the latest combo offers."
 };
@@ -90,3 +90,4 @@ async function sendMessage(message) {
     console.error(error);
   }
 }
+
