@@ -1,51 +1,51 @@
 import express from "express";
 import cors from "cors";
+import OpenAI from "openai";
 import dotenv from "dotenv";
 
+// Load environment variables
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT; // ✅ use only process.env.PORT
-
 app.use(cors());
 app.use(express.json());
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+// ✅ Log whether API key is loaded
+console.log("Loaded key:", process.env.OPENAI_API_KEY ? "✅ Found" : "❌ Missing");
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 app.post("/chat", async (req, res) => {
-  const { message } = req.body;
-
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content:
-              "Answer very concise, two to three sentences if possible, without losing meaning. This website is about burgers. Only answer questions related to burger business (delivery, quality of ingredients, justify high prices, etc.). Dont use word 'beef' because it's India.",
-          },
-          { role: "user", content: message },
-        ],
-        max_tokens: 50,
-      }),
+    const userMessage = req.body.message;
+
+    // Log the incoming message
+    console.log("🟡 User said:", userMessage);
+
+    // Call OpenAI API
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo", // or "gpt-4o" if available
+      messages: [{ role: "user", content: userMessage }],
     });
 
-    const data = await response.json();
-    const reply = data.choices[0].message.content;
-    res.json({ reply });
+    const botMessage = completion.choices[0].message.content;
+
+    // Log AI response
+    console.log("🟢 Bot replied:", botMessage);
+
+    res.json({ reply: botMessage });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ reply: "Oops! Something went wrong." });
+    console.error("❌ OpenAI API Error:", error);
+
+    // Optional: provide more error details to the client (not for production)
+    const message = error.response?.data?.error?.message || error.message || "Unknown error";
+
+    res.status(500).json({ reply: `Error with AI API: ${message}` });
   }
 });
 
-// ✅ Let Render assign the port
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
