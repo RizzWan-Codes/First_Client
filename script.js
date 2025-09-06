@@ -11,12 +11,13 @@ chatToggle.addEventListener("click", () => {
   setTimeout(() => chatToggle.classList.remove("rotate"), 600);
 });
 
-// FAQ buttons
+// FAQ buttons → send directly to bot
 const faqButtons = document.querySelectorAll(".faq-buttons button");
 faqButtons.forEach(btn => {
   btn.addEventListener("click", () => {
-    const answer = btn.dataset.answer;
-    appendBotMessage(answer);
+    const question = btn.innerText;
+    appendUserMessage(question);
+    sendMessage(question);
   });
 });
 
@@ -28,10 +29,7 @@ sendBtn.addEventListener("click", () => {
   appendUserMessage(userMsg);
   chatInput.value = "";
 
-  // Optional auto-response
-  setTimeout(() => {
-    appendBotMessage("🍔 Globurg Bot: Hmm, I don't know that yet.");
-  }, 500);
+  sendMessage(userMsg);
 });
 
 // Append messages functions
@@ -51,25 +49,39 @@ function appendUserMessage(msg) {
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
+// 🔥 Talk to backend instead of fake reply
+async function sendMessage(message) {
+  try {
+    const response = await fetch("https://globurg-ai-backend.onrender.com/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message }),
+    });
 
-// Select all fade-in elements
+    const data = await response.json();
+    appendBotMessage(data.reply || "⚠️ No reply from server");
+  } catch (error) {
+    appendBotMessage("❌ Oops! Something went wrong with the server.");
+    console.error(error);
+  }
+}
+
+// Scroll animations (unrelated but keeping it)
 const faders = document.querySelectorAll('.fade-in-element');
-
 const appearOptions = {
-  threshold: 0.1, // how much of the element is visible
-  rootMargin: "0px 0px -50px 0px" // trigger a bit earlier
+  threshold: 0.1,
+  rootMargin: "0px 0px -50px 0px"
 };
 
 const appearOnScroll = new IntersectionObserver(function(entries, observer){
   entries.forEach(entry => {
     if(entry.isIntersecting){
       entry.target.classList.add('visible');
-      observer.unobserve(entry.target); // stop observing once visible
+      observer.unobserve(entry.target);
     }
   });
 }, appearOptions);
 
-// Attach observer to all fade-in elements
 faders.forEach(fader => {
   appearOnScroll.observe(fader);
 });
